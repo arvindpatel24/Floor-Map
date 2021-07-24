@@ -4,7 +4,7 @@ import { Button } from 'react-bootstrap';
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import {Carousel} from "react-responsive-carousel";
 import './Plan.css';
-import api from "E:/code/React/floor_nodes/src/api/connect";
+import api from "../../api/connect";
 import axios from "axios";
 import CancelIcon from '@material-ui/icons/Cancel';
 import {BounceLoader} from 'react-spinners'
