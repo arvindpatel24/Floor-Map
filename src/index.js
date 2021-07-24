@@ -1,0 +1,11 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import App from './App';
+import 'beautiful-react-diagrams/styles.css';
+
+ReactDOM.render(
+  <App />,
+  document.getElementById('root')
+);
+

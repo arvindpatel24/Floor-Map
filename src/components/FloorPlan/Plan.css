@@ -1,0 +1,165 @@
+.full_window{
+    display: flex;
+    flex-direction: row;
+    background-image: linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%);
+}
+
+.floor_board{
+    height: 100%;
+    width: 50%;
+    z-index: 0;
+    padding-top: 1px;
+    border: 2px solid grey;
+}
+
+#addNode{
+    position: relative;
+    display: inline-flex;
+    justify-content: left;
+}
+
+.Buttons {
+    position: relative;
+    /* margin-top: 5px;
+    margin-right: 10px; */
+    z-index: 1;
+    display: flex;
+    justify-content: right;
+    /* width: 100%; */
+    float : right;
+}
+
+.Buttons div {
+    display: flex;
+    justify-content: right;
+    margin-right: 10px;
+    width: 50%;
+    float : right;
+}
+
+button[disabled=disabled], button:disabled {
+    color: black;
+    font-weight: bolder;
+}
+
+.hoverbutton:hover {
+    transform: scale(1.2);
+}
+
+.buttonRoom {
+    width: 55px fit-content;
+    height: 38px;
+    border-radius: 4px;
+    margin-left: 4px;
+    font-weight: bolder;
+    color: rgb(58, 58, 58) !important;
+}
+
+.graph {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.submit{
+    position: absolute;
+    height: 40px;
+    width: 10%;
+    justify-content: right;
+    right: 50%;
+    bottom: 3px;
+    z-index: 20;
+    background-color: rgb(11, 87, 11) !important;
+    color: whitesmoke;
+    font-weight: bold !important;
+   
+}
+
+
+#but1{
+    background-color: pink ;
+}
+#but2{
+    background-color: yellow;
+}
+#but3{
+    background-color: rgb(226, 82, 30);
+}
+#but4{
+    background-color: rgb(159, 70, 243);
+}
+#but5{
+    background-color: aqua;
+}
+#but6{
+    background-color: rgb(3, 199, 3);
+}
+#but7{
+    background-color: rgb(245, 160, 245);
+}
+#but8{
+    background-color: rgb(94, 191, 248);
+}
+#but9{
+    background-color: lightgrey;
+}
+
+Diagram{
+background-color: rgb(117, 116, 116);
+    
+}
+
+.node_style{
+    border-radius: 20px;
+    
+}
+
+.ganmodel{
+    width:50%;
+    border: 2px solid grey;
+    height: 780px; 
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+
+}
+
+.load {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.carousel{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    height: 300px;
+    top: 100px;
+    padding-top: 20px;
+    border : none;
+}
+
+.carousel .slide {
+    justify-content: center;
+    height: 100vh;
+    top: -50px;
+    border : none;
+}
+ 
+.carousel .slide img{
+    max-height: 100%;
+    width: auto;
+    border : none;
+}
+
+.image{
+    margin : 0 auto;
+    height: 70%;
+    width: auto;
+    border : none;
+}
+
+.carousel-status{
+    display: none;
+}
