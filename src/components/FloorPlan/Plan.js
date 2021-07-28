@@ -13,68 +13,90 @@ const initialSchema = createSchema({
   nodes: []
 });
 
-const baseURL = "http://43ca804aff23.ngrok.io";
-const imgURL= ["http://43ca804aff23.ngrok.io/generated/plan1.png","http://43ca804aff23.ngrok.io/generated/plan2.png","http://43ca804aff23.ngrok.io/generated/plan3.png","http://43ca804aff23.ngrok.io/generated/plan4.png"]
+const baseURL = "http://35.239.102.202:5050";
+// const imgURL = ["img/one.jpeg"]
+const imgURL= [`${baseURL}/generated/plan1.png`,`${baseURL}/generated/plan2.png`,`${baseURL}/generated/plan3.png`,`${baseURL}/generated/plan4.png`,`${baseURL}/generated/plan5.png`,`${baseURL}/generated/plan6.png`,`${baseURL}/generated/plan7.png`]
 const NodeStyleComponent = (props) =>{
+  
   return(
-    <div className="node_style" style={{backgroundColor:`${props.color}`, width:"90px", height:"30px", borderRadius: "50px"}}>
+    <div className="node_style" style={{backgroundColor:`${props.color}`, width:`${props.width}`, height:`${props.height}`, borderRadius: "10px", display: "flex", alignItems: "center",     justifyContent: "center",     textAlign: "center"}}>
       <div style={{textAlign: 'right'}}>
       <CancelIcon fontSize ="small" onClick={() => props.data.onClick(props.id)} style = {{position: 'absolute',backgroundColor:"white", color: 'red',right:'-6px', top: '-7px', cursor: 'default', borderRadius:"50px", margin:"0px"}}/>
       </div>
-      <div role="button" style={{padding: '0px', textAlign: 'center', fontWeight:"bold", color: "black", fontFamily:"poppins"}}>
+      <div role="button" style={{ postion:"relative", padding: '0px', textAlign: 'center', fontWeight:"bold", color: "black", fontFamily:"poppins", marginLeft: "30px"}}>
           {props.content}
       </div>
       <div>       
-          {props.inputs.map((port) => React.cloneElement(port, {style: {  width: '40px', height: '20px', background: '#1B263B', opacity: "0.0", position: "relative" , right:"10px" , top:"-15px", borderRadius:"20px"}}))}
-          {props.outputs.map((port) => React.cloneElement(port, {style: { width: '30px', height: '20px', background: '#1B263B', opacity: "0.0", position: "relative" , right:"-65px" , top:"-30px", borderRadius:"20px"}}))}
-  
+          {props.inputs.map((port) => React.cloneElement(port, {style: {  width: '30px', height: `${props.height}`, background: '#1B263B', opacity: "0.0", borderRadius:"10px", position:"relative", right:`${props.port1right}`, top:`${props.port1top}`}}))}
+          {props.outputs.map((port) => React.cloneElement(port, {style: { width: '30px', height: `${props.height}`, background: '#1B263B', opacity: "0.0", borderRadius:"10px", position:"relative", right:`${props.port2right}`, top:`${props.port2top}`}}))}
       </div>
+      <br></br>
+      {/* <div className = ".form">
+        <form>
+          <input text="text" placeholder="Area(m2)" name='area' style={{width:'50px'}}/>
+        </form>
+      </div> */}
     </div>
   );
 }
+// const areaInput = () => {
+//   console.log("areainput");
+//   return(
+//     <div className = ".form">
+//       <h1>Area Form</h1>
+//       <form>
+//         <input text="text" placeholder="Area in m2" name='area'/>
+//       </form>
+//     </div>
+//   )
+// }
+
 
 const CustomRender = ({ id, content, data, inputs, outputs}) => {
+    // console.log(content);
+    // areaInput();
     if (content === "bedroom") {
 
-      return <NodeStyleComponent id={id} content={content} data={data} inputs={inputs} outputs={outputs} color="rgb(226, 82, 30)"/>;
+      return <NodeStyleComponent id={id} content={content} data={data} inputs={inputs} outputs={outputs} color="rgb(255, 165, 0)" width="90px" height="100px" port1right="90px" port1top="50px" port2right="5px" port2top="-45px"/>;
     }
     else if (content === "bathroom") {
       
-      return <NodeStyleComponent id={id} content={content} data={data} inputs={inputs} outputs={outputs} color="rgb(159, 70, 243)"/>;
+      return <NodeStyleComponent id={id} content={content} data={data} inputs={inputs} outputs={outputs} color="rgb(128, 128, 128)" width="88px" height="45px" port1right="80px" port1top="22px" port2right="15px" port2top="-18px"/>;
     }
     else if (content === "living") {
       
-      return <NodeStyleComponent id={id} content={content} data={data} inputs={inputs} outputs={outputs} color="pink"/>;
+      return <NodeStyleComponent id={id} content={content} data={data} inputs={inputs} outputs={outputs} color="rgb(165, 42, 42)" width="90px" height="100px" port1right="75px" port1top="50px" port2right="-5px" port2top="-45px"/>;
     }
     else if (content === "kitchen") {
       
-      return <NodeStyleComponent id={id} content={content} data={data} inputs={inputs} outputs={outputs} color="yellow"/>;
+      return <NodeStyleComponent id={id} content={content} data={data} inputs={inputs} outputs={outputs} color="rgb(255, 0, 255)" width="80px" height="75px" port1right="80px" port1top="37px" port2right="5px" port2top="-33px"/>;
     }
     else if (content === "closet") {
       
-      return <NodeStyleComponent id={id} content={content} data={data} inputs={inputs} outputs={outputs} color="aqua"/>;
+      return <NodeStyleComponent id={id} content={content} data={data} inputs={inputs} outputs={outputs} color="rgb(255, 0, 0)" width="80px" height="45px" port1right="75px" port1top="22px" port2right="0px" port2top="-18px"/>;
     }
     else if (content === "balcony") {
       
-      return <NodeStyleComponent id={id} content={content} data={data} inputs={inputs} outputs={outputs} color="rgb(3, 199, 3)"/>;
+      return <NodeStyleComponent id={id} content={content} data={data} inputs={inputs} outputs={outputs} color="rgb(0, 0, 255)" width="80px" height="45px" port1right="80px" port1top="22px" port2right="8px" port2top="-18px"/>;
     }
     else if (content === "corridor") {
       
-      return <NodeStyleComponent id={id} content={content} data={data} inputs={inputs} outputs={outputs} color="rgb(253, 27, 253)"/>;
+      return <NodeStyleComponent id={id} content={content} data={data} inputs={inputs} outputs={outputs} color="rgb(0, 255, 255)" width="80px" height="45px"  port1right="80px" port1top="22px" port2right="8px" port2top="-18px"/>;
     }
     else if (content === "dining") {
       
-      return <NodeStyleComponent id={id} content={content} data={data} inputs={inputs} outputs={outputs} color="rgb(94, 191, 248)"/>;
+      return <NodeStyleComponent id={id} content={content} data={data} inputs={inputs} outputs={outputs} color="rgb(0, 128, 0)" width="80px" height="75px"  port1right="80px" port1top="37px" port2right="0px" port2top="-33px"/>;
     }
     else
     {
       
-      return <NodeStyleComponent id={id} content={content} data={data} inputs={inputs} outputs={outputs} color="lightgrey"/>;
+      return <NodeStyleComponent id={id} content={content} data={data} inputs={inputs} outputs={outputs} color="rgb(255, 255, 0)" width="80px" height="75px"  port1right="80px" port1top="37px" port2right="5px" port2top="-33px"/>;
     }
 };
 
 const Plan = () => {
   // create diagrams schema
+
   
   const [schema, { onChange, addNode, removeNode }] = useSchema(initialSchema);
   const [editState, setEditState] = useState((true));
@@ -82,6 +104,14 @@ const Plan = () => {
   const [loading, setLoading] = useState(('none'));
   const [portnum, setPortnum] = useState((0));
   const [img, setImg] = useState([]);
+
+  const clearCacheData = () => {
+    caches.keys().then((names) => {
+      names.forEach((name) => {
+        caches.delete(name);
+      });
+    });
+  };
   
   var map = {}, idindex = {}, edges = [], nodes = [];
 
@@ -97,7 +127,7 @@ const Plan = () => {
       let v = Math.floor((Number((e.output).slice(5)))/2);
       edges.push([idindex[u+1],idindex[v+1]]);
   });
-  console.log(nodes,edges);
+  // console.log(nodes,edges);
   
   const deleteNodeFromSchema = (id) => {
     const nodeToRemove = schema.nodes.find(node => node.id === id);
@@ -132,6 +162,8 @@ const Plan = () => {
   const sendSchema = async () => {
 
     setLoading('initial');
+    setImg([]);
+    clearCacheData();
     const file = JSON.stringify({
       "nodes" : nodes,
       "edges" : edges
@@ -215,15 +247,18 @@ const Plan = () => {
         </div>
       </div>  
       <div className="ganmodel">
-        <div className="load" style={{display : `${loading}`}}>
-          <BounceLoader/>
+        <div style={{display : `${loading}`}}>
+          <div className="load">
+            <BounceLoader/>
+          </div>
         </div>
+        
         <div className="forCarousel" style={{display : `${imageslider}`}}>
           <Carousel infiniteLoop autoPlay className='Pranav'>
                 {img.map((image, ind) => {
                     return (
                         <div className = "image" key={ind}>
-                            <img src={image} alt = "blank"/>
+                            <img src={image+ "?a=" + Math.random()}  alt = "blank"/>
                          </div>
                     );
                     
