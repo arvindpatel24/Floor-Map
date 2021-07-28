@@ -1,7 +1,8 @@
 .full_window{
     display: flex;
     flex-direction: row;
-    background-image: linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%);
+    /* background-image: linear-gradient(to top, #fbc2eb 0%, #a6c1ee 100%); */
+    background-color: white;
 }
 
 .floor_board{
@@ -52,7 +53,7 @@ button[disabled=disabled], button:disabled {
     border-radius: 4px;
     margin-left: 4px;
     font-weight: bolder;
-    color: rgb(58, 58, 58) !important;
+    color: white !important;
 }
 
 .graph {
@@ -78,31 +79,31 @@ button[disabled=disabled], button:disabled {
 
 
 #but1{
-    background-color: pink ;
+    background-color: rgb(165, 42, 42) ;
 }
 #but2{
-    background-color: yellow;
+    background-color: rgb(255, 0, 255);
 }
 #but3{
-    background-color: rgb(226, 82, 30);
+    background-color: rgb(255, 165, 0);
 }
 #but4{
-    background-color: rgb(159, 70, 243);
+    background-color: rgb(128, 128, 128);
 }
 #but5{
-    background-color: aqua;
+    background-color: rgb(255, 0, 0);
 }
 #but6{
-    background-color: rgb(3, 199, 3);
+    background-color: rgb(0, 0, 255);
 }
 #but7{
-    background-color: rgb(245, 160, 245);
+    background-color: rgb(3, 196, 196);
 }
 #but8{
-    background-color: rgb(94, 191, 248);
+    background-color: rgb(0, 128, 0);
 }
 #but9{
-    background-color: lightgrey;
+    background-color: rgb(211, 211, 0);
 }
 
 Diagram{
@@ -122,19 +123,25 @@ background-color: rgb(117, 116, 116);
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
+    /* display: flex;
+    justify-content: center; */
 
 }
 
 .load {
-    margin-left: auto;
-    margin-right: auto;
+    position: relative;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    top: 300px;
 }
 
 .carousel{
     position: relative;
     display: flex;
     justify-content: center;
-    height: 300px;
+    height: 370px;
     top: 100px;
     padding-top: 20px;
     border : none;
@@ -143,7 +150,7 @@ background-color: rgb(117, 116, 116);
 .carousel .slide {
     justify-content: center;
     height: 100vh;
-    top: -50px;
+    top: 20px;
     border : none;
 }
  
