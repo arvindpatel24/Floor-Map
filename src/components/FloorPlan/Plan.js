@@ -13,86 +13,92 @@ const initialSchema = createSchema({
   nodes: []
 });
 
-const baseURL = "http://35.239.102.202:5050";
+const baseURL = "http://7c5e57009ead.ngrok.io";
 // const imgURL = ["img/one.jpeg"]
 const imgURL= [`${baseURL}/generated/plan1.png`,`${baseURL}/generated/plan2.png`,`${baseURL}/generated/plan3.png`,`${baseURL}/generated/plan4.png`,`${baseURL}/generated/plan5.png`,`${baseURL}/generated/plan6.png`,`${baseURL}/generated/plan7.png`]
-const NodeStyleComponent = (props) =>{
+
+// const NodeStyleComponent = (props) =>{
+//   const [area, setArea] = useState('');
+//   const [finalArea, setFinalArea] = useState('');
+
+//   const inputChange = (e) => {
+//     setArea(e.target.value);
+//   }
+
+//   const onSubmits = (e) => {
+//     e.preventDefault();
+//     // setAreaMap(areaMap => ({
+//     //   ...areaMap,
+//     //   [props.id] : area
+//     // }));
+//     setFinalArea(area);
+//     setArea('');
+//   }
   
-  return(
-    <div className="node_style" style={{backgroundColor:`${props.color}`, width:`${props.width}`, height:`${props.height}`, borderRadius: "10px", display: "flex", alignItems: "center",     justifyContent: "center",     textAlign: "center"}}>
-      <div style={{textAlign: 'right'}}>
-      <CancelIcon fontSize ="small" onClick={() => props.data.onClick(props.id)} style = {{position: 'absolute',backgroundColor:"white", color: 'red',right:'-6px', top: '-7px', cursor: 'default', borderRadius:"50px", margin:"0px"}}/>
-      </div>
-      <div role="button" style={{ postion:"relative", padding: '0px', textAlign: 'center', fontWeight:"bold", color: "black", fontFamily:"poppins", marginLeft: "30px"}}>
-          {props.content}
-      </div>
-      <div>       
-          {props.inputs.map((port) => React.cloneElement(port, {style: {  width: '30px', height: `${props.height}`, background: '#1B263B', opacity: "0.0", borderRadius:"10px", position:"relative", right:`${props.port1right}`, top:`${props.port1top}`}}))}
-          {props.outputs.map((port) => React.cloneElement(port, {style: { width: '30px', height: `${props.height}`, background: '#1B263B', opacity: "0.0", borderRadius:"10px", position:"relative", right:`${props.port2right}`, top:`${props.port2top}`}}))}
-      </div>
-      <br></br>
-      {/* <div className = ".form">
-        <form>
-          <input text="text" placeholder="Area(m2)" name='area' style={{width:'50px'}}/>
-        </form>
-      </div> */}
-    </div>
-  );
-}
-// const areaInput = () => {
-//   console.log("areainput");
 //   return(
-//     <div className = ".form">
-//       <h1>Area Form</h1>
-//       <form>
-//         <input text="text" placeholder="Area in m2" name='area'/>
-//       </form>
+//     <div className="node_style" style={{backgroundColor:`${props.color}`, width:`${props.width}`, height:`${props.height}`, borderRadius: "10px", display: "flex", alignItems: "center", justifyContent: "center", textAlign: "center", boxShadow: `0 0 20px ${props.color}`}}>
+//       <div style={{textAlign: 'right'}}>
+//       <CancelIcon fontSize ="small" onClick={() => props.data.onClick(props.id)} style = {{position: 'absolute',backgroundColor:"white", color: 'red',right:'-6px', top: '-7px', cursor: 'default', borderRadius:"50px", margin:"0px"}}/>
+//       </div>
+//       <div role="button" style={{ position:"relative", padding: '0px', textAlign: 'center', fontWeight:"bold", color: "black", fontFamily:"poppins" ,top: `${props.contentTop}`}}>
+//           <p>{props.content}</p>
+//           <p>{finalArea} m<sup>2</sup></p>
+//       </div>
+//       <div className = ".form" style={{position:"relative", top:`${props.inputTop}`}}>
+//         <form onSubmit={onSubmits}>
+//           <input text="text" placeholder="Edit Area" name='area' value={area} style={{width:`${props.width}`}} onChange={inputChange}/>
+//         </form>
+//       </div>
+//       <div>       
+//           {props.inputs.map((port) => React.cloneElement(port, {style: {  width: '30px', height: `${props.height}`, background: '#1B263B', opacity: "0.0", borderRadius:"10px", position:"relative", right:`${props.port1right}`, top:`${props.port1top}`}}))}
+//           {props.outputs.map((port) => React.cloneElement(port, {style: { width: '30px', height: `${props.height}`, background: '#1B263B', opacity: "0.0", borderRadius:"10px", position:"relative", right:`${props.port2right}`, top:`${props.port2top}`}}))}
+//       </div>
+      
 //     </div>
-//   )
+//   );
 // }
 
+// const CustomRender = ({ id, content, data, inputs, outputs}) => {
+//     // console.log(content);
+//     // areaInput();
+//     if (content === "bedroom") {
 
-const CustomRender = ({ id, content, data, inputs, outputs}) => {
-    // console.log(content);
-    // areaInput();
-    if (content === "bedroom") {
-
-      return <NodeStyleComponent id={id} content={content} data={data} inputs={inputs} outputs={outputs} color="rgb(255, 165, 0)" width="90px" height="100px" port1right="90px" port1top="50px" port2right="5px" port2top="-45px"/>;
-    }
-    else if (content === "bathroom") {
+//       return <NodeStyleComponent id={id} content={content} data={data} inputs={inputs} outputs={outputs} color="rgb(255, 165, 0)" width="90px" height="100px" port1right="40px" port1top="25px" port2right="-40px" port2top="-65px" contentTop="100px" inputTop="130px"/>;
+//     }
+//     else if (content === "bathroom") {
       
-      return <NodeStyleComponent id={id} content={content} data={data} inputs={inputs} outputs={outputs} color="rgb(128, 128, 128)" width="88px" height="45px" port1right="80px" port1top="22px" port2right="15px" port2top="-18px"/>;
-    }
-    else if (content === "living") {
+//       return <NodeStyleComponent id={id} content={content} data={data} inputs={inputs} outputs={outputs} color="rgb(128, 128, 128)" width="88px" height="60px" port1right="42px" port1top="5px" port2right="-40px" port2top="-45px" contentTop="65px" inputTop="70px"/>;
+//     }
+//     else if (content === "living") {
       
-      return <NodeStyleComponent id={id} content={content} data={data} inputs={inputs} outputs={outputs} color="rgb(165, 42, 42)" width="90px" height="100px" port1right="75px" port1top="50px" port2right="-5px" port2top="-45px"/>;
-    }
-    else if (content === "kitchen") {
+//       return <NodeStyleComponent id={id} content={content} data={data} inputs={inputs} outputs={outputs} color="rgb(165, 42, 42)" width="90px" height="100px" port1right="40px" port1top="27px" port2right="-40px" port2top="-65px" contentTop="100px" inputTop="130px"/>;
+//     }
+//     else if (content === "kitchen") {
       
-      return <NodeStyleComponent id={id} content={content} data={data} inputs={inputs} outputs={outputs} color="rgb(255, 0, 255)" width="80px" height="75px" port1right="80px" port1top="37px" port2right="5px" port2top="-33px"/>;
-    }
-    else if (content === "closet") {
+//       return <NodeStyleComponent id={id} content={content} data={data} inputs={inputs} outputs={outputs} color="rgb(255, 0, 255)" width="80px" height="75px" port1right="38px" port1top="15px" port2right="-38px" port2top="-55px" contentTop="75px" inputTop="90px"/>;
+//     }
+//     else if (content === "closet") {
       
-      return <NodeStyleComponent id={id} content={content} data={data} inputs={inputs} outputs={outputs} color="rgb(255, 0, 0)" width="80px" height="45px" port1right="75px" port1top="22px" port2right="0px" port2top="-18px"/>;
-    }
-    else if (content === "balcony") {
+//       return <NodeStyleComponent id={id} content={content} data={data} inputs={inputs} outputs={outputs} color="rgb(255, 0, 0)" width="88px" height="60px" port1right="42px" port1top="5px" port2right="-40px" port2top="-45px" contentTop="65px" inputTop="70px"/>;
+//     }
+//     else if (content === "balcony") {
       
-      return <NodeStyleComponent id={id} content={content} data={data} inputs={inputs} outputs={outputs} color="rgb(0, 0, 255)" width="80px" height="45px" port1right="80px" port1top="22px" port2right="8px" port2top="-18px"/>;
-    }
-    else if (content === "corridor") {
+//       return <NodeStyleComponent id={id} content={content} data={data} inputs={inputs} outputs={outputs} color="rgb(0, 0, 255)" width="88px" height="60px" port1right="42px" port1top="5px" port2right="-40px" port2top="-45px" contentTop="65px" inputTop="70px"/>;
+//     }
+//     else if (content === "corridor") {
       
-      return <NodeStyleComponent id={id} content={content} data={data} inputs={inputs} outputs={outputs} color="rgb(0, 255, 255)" width="80px" height="45px"  port1right="80px" port1top="22px" port2right="8px" port2top="-18px"/>;
-    }
-    else if (content === "dining") {
+//       return <NodeStyleComponent id={id} content={content} data={data} inputs={inputs} outputs={outputs} color="rgb(0, 255, 255)" width="88px" height="60px" port1right="42px" port1top="5px" port2right="-40px" port2top="-45px" contentTop="65px" inputTop="70px"/>;
+//     }
+//     else if (content === "dining") {
       
-      return <NodeStyleComponent id={id} content={content} data={data} inputs={inputs} outputs={outputs} color="rgb(0, 128, 0)" width="80px" height="75px"  port1right="80px" port1top="37px" port2right="0px" port2top="-33px"/>;
-    }
-    else
-    {
+//       return <NodeStyleComponent id={id} content={content} data={data} inputs={inputs} outputs={outputs} color="rgb(0, 128, 0)" width="80px" height="75px" port1right="38px" port1top="15px" port2right="-38px" port2top="-55px" contentTop="75px" inputTop="90px"/>;
+//     }
+//     else
+//     {
       
-      return <NodeStyleComponent id={id} content={content} data={data} inputs={inputs} outputs={outputs} color="rgb(255, 255, 0)" width="80px" height="75px"  port1right="80px" port1top="37px" port2right="5px" port2top="-33px"/>;
-    }
-};
+//       return <NodeStyleComponent id={id} content={content} data={data} inputs={inputs} outputs={outputs} color="rgb(255, 255, 0)" width="80px" height="75px" port1right="38px" port1top="15px" port2right="-38px" port2top="-55px" contentTop="75px" inputTop="90px"/>;
+//     }
+// };
 
 const Plan = () => {
   // create diagrams schema
@@ -104,6 +110,10 @@ const Plan = () => {
   const [loading, setLoading] = useState(('none'));
   const [portnum, setPortnum] = useState((0));
   const [img, setImg] = useState([]);
+  // const [areaMap, setAreaMap] = useState({});
+  const inputKeyRef = React.useRef();
+  const inputValueRef = React.useRef();
+  const areaMap = {};
 
   const clearCacheData = () => {
     caches.keys().then((names) => {
@@ -112,22 +122,108 @@ const Plan = () => {
       });
     });
   };
-  
-  var map = {}, idindex = {}, edges = [], nodes = [];
 
+  //  here adding above function
+
+  const NodeStyleComponent = (props) =>{
+    const [area, setArea] = useState('');
+    const [finalArea, setFinalArea] = useState('');
   
+    const inputChange = (e) => {
+      setArea(e.target.value);
+    }
+  
+    const onSubmits = (e) => {
+      e.preventDefault();
+      // setAreaMap({ ...areaMap, [props.id]:area});
+      areaMap[props.id] = area;
+      console.log(props.id, areaMap, area);
+      setFinalArea(area);
+      setArea('');
+    }
+    
+    return(
+      <div className="node_style" style={{backgroundColor:`${props.color}`, width:`${props.width}`, height:`${props.height}`, borderRadius: "10px", display: "flex", alignItems: "center", justifyContent: "center", textAlign: "center", boxShadow: `0 0 20px ${props.color}`}}>
+        <div style={{textAlign: 'right'}}>
+        <CancelIcon fontSize ="small" onClick={() => props.data.onClick(props.id)} style = {{position: 'absolute',backgroundColor:"white", color: 'red',right:'-6px', top: '-7px', cursor: 'default', borderRadius:"50px", margin:"0px"}}/>
+        </div>
+        <div role="button" style={{ position:"relative", padding: '0px', textAlign: 'center', fontWeight:"bold", color: "black", fontFamily:"poppins" ,top: `${props.contentTop}`}}>
+            <p>{props.content}</p>
+            <p>{finalArea} m<sup>2</sup></p>
+        </div>
+        <div className = ".form" style={{position:"relative", top:`${props.inputTop}`}}>
+          <form onSubmit={onSubmits}>
+            <input text="text" placeholder="Edit Area" name='area' value={area} style={{width:`${props.width}`}} onChange={inputChange}/>
+          </form>
+        </div>
+        <div>       
+            {props.inputs.map((port) => React.cloneElement(port, {style: {  width: '30px', height: `${props.height}`, background: '#1B263B', opacity: "0.0", borderRadius:"10px", position:"relative", right:`${props.port1right}`, top:`${props.port1top}`}}))}
+            {props.outputs.map((port) => React.cloneElement(port, {style: { width: '30px', height: `${props.height}`, background: '#1B263B', opacity: "0.0", borderRadius:"10px", position:"relative", right:`${props.port2right}`, top:`${props.port2top}`}}))}
+        </div>
+        
+      </div>
+    );
+  }
+  
+  const CustomRender = ({ id, content, data, inputs, outputs}) => {
+      // console.log(content);
+      // areaInput();
+      if (content === "bedroom") {
+  
+        return <NodeStyleComponent id={id} content={content} data={data} inputs={inputs} outputs={outputs} color="rgb(255, 165, 0)" width="90px" height="100px" port1right="40px" port1top="25px" port2right="-40px" port2top="-65px" contentTop="100px" inputTop="130px"/>;
+      }
+      else if (content === "bathroom") {
+        
+        return <NodeStyleComponent id={id} content={content} data={data} inputs={inputs} outputs={outputs} color="rgb(128, 128, 128)" width="88px" height="60px" port1right="42px" port1top="5px" port2right="-40px" port2top="-45px" contentTop="65px" inputTop="70px"/>;
+      }
+      else if (content === "living") {
+        
+        return <NodeStyleComponent id={id} content={content} data={data} inputs={inputs} outputs={outputs} color="rgb(165, 42, 42)" width="90px" height="100px" port1right="40px" port1top="27px" port2right="-40px" port2top="-65px" contentTop="100px" inputTop="130px"/>;
+      }
+      else if (content === "kitchen") {
+        
+        return <NodeStyleComponent id={id} content={content} data={data} inputs={inputs} outputs={outputs} color="rgb(255, 0, 255)" width="80px" height="75px" port1right="38px" port1top="15px" port2right="-38px" port2top="-55px" contentTop="75px" inputTop="90px"/>;
+      }
+      else if (content === "closet") {
+        
+        return <NodeStyleComponent id={id} content={content} data={data} inputs={inputs} outputs={outputs} color="rgb(255, 0, 0)" width="88px" height="60px" port1right="42px" port1top="5px" port2right="-40px" port2top="-45px" contentTop="65px" inputTop="70px"/>;
+      }
+      else if (content === "balcony") {
+        
+        return <NodeStyleComponent id={id} content={content} data={data} inputs={inputs} outputs={outputs} color="rgb(0, 0, 255)" width="88px" height="60px" port1right="42px" port1top="5px" port2right="-40px" port2top="-45px" contentTop="65px" inputTop="70px"/>;
+      }
+      else if (content === "corridor") {
+        
+        return <NodeStyleComponent id={id} content={content} data={data} inputs={inputs} outputs={outputs} color="rgb(0, 255, 255)" width="88px" height="60px" port1right="42px" port1top="5px" port2right="-40px" port2top="-45px" contentTop="65px" inputTop="70px"/>;
+      }
+      else if (content === "dining") {
+        
+        return <NodeStyleComponent id={id} content={content} data={data} inputs={inputs} outputs={outputs} color="rgb(0, 128, 0)" width="80px" height="75px" port1right="38px" port1top="15px" port2right="-38px" port2top="-55px" contentTop="75px" inputTop="90px"/>;
+      }
+      else
+      {
+        
+        return <NodeStyleComponent id={id} content={content} data={data} inputs={inputs} outputs={outputs} color="rgb(255, 255, 0)" width="80px" height="75px" port1right="38px" port1top="15px" port2right="-38px" port2top="-55px" contentTop="75px" inputTop="90px"/>;
+      }
+  };
+  
+  //  adding end here
+  var map = {}, idindex = {}, edges = [], nodes = [], areas = [];
+
+  console.log(areaMap);
   (schema.nodes).forEach((value, index) => {
       let num = Number((value.inputs[0].id).slice(5));
       map[Math.floor(num/2)] = value.content;
       nodes.push(value.content);
       idindex[Math.floor(num/2)+1] = index;
+      areas.push(areaMap[value.inputs[0].id]);
   });
   schema.links.forEach((e) => {
       let u = Math.floor((Number((e.input).slice(5)))/2);
       let v = Math.floor((Number((e.output).slice(5)))/2);
       edges.push([idindex[u+1],idindex[v+1]]);
   });
-  // console.log(nodes,edges);
+  console.log(nodes,edges,areas);
   
   const deleteNodeFromSchema = (id) => {
     const nodeToRemove = schema.nodes.find(node => node.id === id);
@@ -174,13 +270,13 @@ const Plan = () => {
     const response = await api.post("/", file);
     console.log(response);
     
-    setImg(imgURL);
     
     // axios.post(postLink, file);
 
+    setImg(imgURL);
     setLoading('none');
     setImageslider('initial'); 
-    // const response = await fetch('http://68fb79cfac33.ngrok.io/', {
+    // const response = await fetch(postLink, {
     //   method : 'post',
     //   mode : 'no-cors',
     //   headers: {
@@ -190,39 +286,8 @@ const Plan = () => {
     //   body : file
     // }); 
     // console.log(response);
-    // setTimeout(() => {  console.log("World!"); }, 2000);
-    // console.log("Wait done");
-    // let str = 'http://215f4b42602f.ngrok.io/generated/plan1.png';
-    // const vartition = 5;
-    // let x = document.getElementsByClassName('Pranav')[0];
-    // // let y = document.getElementsByClassName('slide selected')[1];
-
-    // while (x.firstChild) {
-    //   x.removeChild(x.lastChild);
-    // }
-
-    // for(let i=0;i<vartition;i++)
-    // { 
-    //   var divElement = document.createElement("div");
-    //   divElement.classList.add("image");
-
-    //   var imgElement = document.createElement("img");
-    //   let path = baseURL + '/generated/plan' + String(Number(i+1)) +'.png';
-    //   imgElement.src = path;
-
-    //   divElement.appendChild(imgElement);
-    //   x.appendChild(divElement);
-    // }
-
-    // console.log(x);
+    
   }
-
-  // useEffect(() => {
-  //   const timer = setTimeout(() => {
-  //     setCount('Timeout called!');
-  //   }, 1000);
-  //   return () => clearTimeout(timer);
-  // }, []);
 
   return (
     <div className="full_window">
@@ -242,7 +307,7 @@ const Plan = () => {
           </div>
         </div>
         <div className="graph">
-          <Diagram schema={schema} onChange={onChange} style={{backgroundImage: "linear-gradient(to top, #09203f 0%, #537895 100%)",zIndex : "10", position: "relative", display: "visible", height:"738px"}}/>
+          <Diagram schema={schema} onChange={onChange} style={{backgroundColor: "#000000",zIndex : "10", position: "relative", display: "visible", height:"738px"}}/>
           <Button  onClick={()=> (sendSchema())} className = "ui button green submit">Submit</Button>
         </div>
       </div>  
@@ -272,3 +337,4 @@ const Plan = () => {
 };
 
 export default Plan;
+// 
