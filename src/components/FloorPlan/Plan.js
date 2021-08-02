@@ -13,92 +13,9 @@ const initialSchema = createSchema({
   nodes: []
 });
 
-const baseURL = "http://7c5e57009ead.ngrok.io";
-// const imgURL = ["img/one.jpeg"]
-const imgURL= [`${baseURL}/generated/plan1.png`,`${baseURL}/generated/plan2.png`,`${baseURL}/generated/plan3.png`,`${baseURL}/generated/plan4.png`,`${baseURL}/generated/plan5.png`,`${baseURL}/generated/plan6.png`,`${baseURL}/generated/plan7.png`]
-
-// const NodeStyleComponent = (props) =>{
-//   const [area, setArea] = useState('');
-//   const [finalArea, setFinalArea] = useState('');
-
-//   const inputChange = (e) => {
-//     setArea(e.target.value);
-//   }
-
-//   const onSubmits = (e) => {
-//     e.preventDefault();
-//     // setAreaMap(areaMap => ({
-//     //   ...areaMap,
-//     //   [props.id] : area
-//     // }));
-//     setFinalArea(area);
-//     setArea('');
-//   }
-  
-//   return(
-//     <div className="node_style" style={{backgroundColor:`${props.color}`, width:`${props.width}`, height:`${props.height}`, borderRadius: "10px", display: "flex", alignItems: "center", justifyContent: "center", textAlign: "center", boxShadow: `0 0 20px ${props.color}`}}>
-//       <div style={{textAlign: 'right'}}>
-//       <CancelIcon fontSize ="small" onClick={() => props.data.onClick(props.id)} style = {{position: 'absolute',backgroundColor:"white", color: 'red',right:'-6px', top: '-7px', cursor: 'default', borderRadius:"50px", margin:"0px"}}/>
-//       </div>
-//       <div role="button" style={{ position:"relative", padding: '0px', textAlign: 'center', fontWeight:"bold", color: "black", fontFamily:"poppins" ,top: `${props.contentTop}`}}>
-//           <p>{props.content}</p>
-//           <p>{finalArea} m<sup>2</sup></p>
-//       </div>
-//       <div className = ".form" style={{position:"relative", top:`${props.inputTop}`}}>
-//         <form onSubmit={onSubmits}>
-//           <input text="text" placeholder="Edit Area" name='area' value={area} style={{width:`${props.width}`}} onChange={inputChange}/>
-//         </form>
-//       </div>
-//       <div>       
-//           {props.inputs.map((port) => React.cloneElement(port, {style: {  width: '30px', height: `${props.height}`, background: '#1B263B', opacity: "0.0", borderRadius:"10px", position:"relative", right:`${props.port1right}`, top:`${props.port1top}`}}))}
-//           {props.outputs.map((port) => React.cloneElement(port, {style: { width: '30px', height: `${props.height}`, background: '#1B263B', opacity: "0.0", borderRadius:"10px", position:"relative", right:`${props.port2right}`, top:`${props.port2top}`}}))}
-//       </div>
-      
-//     </div>
-//   );
-// }
-
-// const CustomRender = ({ id, content, data, inputs, outputs}) => {
-//     // console.log(content);
-//     // areaInput();
-//     if (content === "bedroom") {
-
-//       return <NodeStyleComponent id={id} content={content} data={data} inputs={inputs} outputs={outputs} color="rgb(255, 165, 0)" width="90px" height="100px" port1right="40px" port1top="25px" port2right="-40px" port2top="-65px" contentTop="100px" inputTop="130px"/>;
-//     }
-//     else if (content === "bathroom") {
-      
-//       return <NodeStyleComponent id={id} content={content} data={data} inputs={inputs} outputs={outputs} color="rgb(128, 128, 128)" width="88px" height="60px" port1right="42px" port1top="5px" port2right="-40px" port2top="-45px" contentTop="65px" inputTop="70px"/>;
-//     }
-//     else if (content === "living") {
-      
-//       return <NodeStyleComponent id={id} content={content} data={data} inputs={inputs} outputs={outputs} color="rgb(165, 42, 42)" width="90px" height="100px" port1right="40px" port1top="27px" port2right="-40px" port2top="-65px" contentTop="100px" inputTop="130px"/>;
-//     }
-//     else if (content === "kitchen") {
-      
-//       return <NodeStyleComponent id={id} content={content} data={data} inputs={inputs} outputs={outputs} color="rgb(255, 0, 255)" width="80px" height="75px" port1right="38px" port1top="15px" port2right="-38px" port2top="-55px" contentTop="75px" inputTop="90px"/>;
-//     }
-//     else if (content === "closet") {
-      
-//       return <NodeStyleComponent id={id} content={content} data={data} inputs={inputs} outputs={outputs} color="rgb(255, 0, 0)" width="88px" height="60px" port1right="42px" port1top="5px" port2right="-40px" port2top="-45px" contentTop="65px" inputTop="70px"/>;
-//     }
-//     else if (content === "balcony") {
-      
-//       return <NodeStyleComponent id={id} content={content} data={data} inputs={inputs} outputs={outputs} color="rgb(0, 0, 255)" width="88px" height="60px" port1right="42px" port1top="5px" port2right="-40px" port2top="-45px" contentTop="65px" inputTop="70px"/>;
-//     }
-//     else if (content === "corridor") {
-      
-//       return <NodeStyleComponent id={id} content={content} data={data} inputs={inputs} outputs={outputs} color="rgb(0, 255, 255)" width="88px" height="60px" port1right="42px" port1top="5px" port2right="-40px" port2top="-45px" contentTop="65px" inputTop="70px"/>;
-//     }
-//     else if (content === "dining") {
-      
-//       return <NodeStyleComponent id={id} content={content} data={data} inputs={inputs} outputs={outputs} color="rgb(0, 128, 0)" width="80px" height="75px" port1right="38px" port1top="15px" port2right="-38px" port2top="-55px" contentTop="75px" inputTop="90px"/>;
-//     }
-//     else
-//     {
-      
-//       return <NodeStyleComponent id={id} content={content} data={data} inputs={inputs} outputs={outputs} color="rgb(255, 255, 0)" width="80px" height="75px" port1right="38px" port1top="15px" port2right="-38px" port2top="-55px" contentTop="75px" inputTop="90px"/>;
-//     }
-// };
+const baseURL = "http://34.135.231.231:5000";
+const imgURL = ["https://storage.googleapis.com/housegan-3f845.appspot.com/floorplan/plan0.jpg", "https://storage.googleapis.com/housegan-3f845.appspot.com/floorplan/plan1.jpg", "https://storage.googleapis.com/housegan-3f845.appspot.com/floorplan/plan2.jpg",  "https://storage.googleapis.com/housegan-3f845.appspot.com/floorplan/plan3.jpg",  "https://storage.googleapis.com/housegan-3f845.appspot.com/floorplan/plan4.jpg",  "https://storage.googleapis.com/housegan-3f845.appspot.com/floorplan/plan5.jpg", "https://storage.googleapis.com/housegan-3f845.appspot.com/floorplan/plan6.jpg",  "https://storage.googleapis.com/housegan-3f845.appspot.com/floorplan/plan7.jpg"]
+// const imgURL= [`${baseURL}/generated/plan1.png`,`${baseURL}/generated/plan2.png`,`${baseURL}/generated/plan3.png`,`${baseURL}/generated/plan4.png`,`${baseURL}/generated/plan5.png`,`${baseURL}/generated/plan6.png`,`${baseURL}/generated/plan7.png`]
 
 const Plan = () => {
   // create diagrams schema
@@ -115,13 +32,13 @@ const Plan = () => {
   const inputValueRef = React.useRef();
   const areaMap = {};
 
-  const clearCacheData = () => {
-    caches.keys().then((names) => {
-      names.forEach((name) => {
-        caches.delete(name);
-      });
-    });
-  };
+  // const clearCacheData = () => {
+  //   caches.keys().then((names) => {
+  //     names.forEach((name) => {
+  //       caches.delete(name);
+  //     });
+  //   });
+  // };
 
   //  here adding above function
 
@@ -244,7 +161,6 @@ const Plan = () => {
        outputs: [{ id: `port-${portnum+1}`}],
    };
    addNode(nextNode);
-   setEditState(true); 
    setPortnum(portnum+2);
   
   //  console.log(schema.nodes[0][0].links);
@@ -258,8 +174,8 @@ const Plan = () => {
   const sendSchema = async () => {
 
     setLoading('initial');
-    setImg([]);
-    clearCacheData();
+    // setImg([]);
+    // clearCacheData();
     const file = JSON.stringify({
       "nodes" : nodes,
       "edges" : edges
@@ -292,7 +208,7 @@ const Plan = () => {
   return (
     <div className="full_window">
       <div className="floor_board">
-        <Button  onClick={()=> (nodeAdding())} className = "ui button blue" id="addNode">Add Node</Button>
+        <Button  onClick={nodeAdding} className = "ui button blue" id="addNode">Add Node</Button>
         <div className="Buttons">
           <div>
             <Button className="buttonRoom hoverbutton" id="but1" disabled={editState} onClick={()=> addNewNode("living")} >Living</Button>
@@ -307,9 +223,10 @@ const Plan = () => {
           </div>
         </div>
         <div className="graph">
-          <Diagram schema={schema} onChange={onChange} style={{backgroundColor: "#000000",zIndex : "10", position: "relative", display: "visible", height:"738px"}}/>
-          <Button  onClick={()=> (sendSchema())} className = "ui button green submit">Submit</Button>
+          <Diagram schema={schema} onChange={onChange}  style={{backgroundColor: "#000000",zIndex : "10", position: "relative", display: "visible", height:"738px"}}/>
+          <Button  onClick={sendSchema} className = "ui button green submit">Submit</Button>
         </div>
+        
       </div>  
       <div className="ganmodel">
         <div style={{display : `${loading}`}}>
@@ -319,7 +236,7 @@ const Plan = () => {
         </div>
         
         <div className="forCarousel" style={{display : `${imageslider}`}}>
-          <Carousel infiniteLoop autoPlay className='Pranav'>
+          <Carousel autoPlay className='Pranav'>
                 {img.map((image, ind) => {
                     return (
                         <div className = "image" key={ind}>
