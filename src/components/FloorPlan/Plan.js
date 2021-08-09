@@ -13,7 +13,7 @@ const initialSchema = createSchema({
   nodes: []
 });
 
-const baseURL = "http://34.135.231.231:5000";
+const baseURL = "https://staart.space";
 const imgURL = ["https://storage.googleapis.com/housegan-3f845.appspot.com/floorplan/plan0.jpg", "https://storage.googleapis.com/housegan-3f845.appspot.com/floorplan/plan1.jpg", "https://storage.googleapis.com/housegan-3f845.appspot.com/floorplan/plan2.jpg",  "https://storage.googleapis.com/housegan-3f845.appspot.com/floorplan/plan3.jpg",  "https://storage.googleapis.com/housegan-3f845.appspot.com/floorplan/plan4.jpg",  "https://storage.googleapis.com/housegan-3f845.appspot.com/floorplan/plan5.jpg", "https://storage.googleapis.com/housegan-3f845.appspot.com/floorplan/plan6.jpg",  "https://storage.googleapis.com/housegan-3f845.appspot.com/floorplan/plan7.jpg"]
 // const imgURL= [`${baseURL}/generated/plan1.png`,`${baseURL}/generated/plan2.png`,`${baseURL}/generated/plan3.png`,`${baseURL}/generated/plan4.png`,`${baseURL}/generated/plan5.png`,`${baseURL}/generated/plan6.png`,`${baseURL}/generated/plan7.png`]
 
@@ -27,18 +27,10 @@ const Plan = () => {
   const [loading, setLoading] = useState(('none'));
   const [portnum, setPortnum] = useState((0));
   const [img, setImg] = useState([]);
-  // const [areaMap, setAreaMap] = useState({});
+  const [areaMap, setAreaMap] = useState({});
   const inputKeyRef = React.useRef();
   const inputValueRef = React.useRef();
-  const areaMap = {};
-
-  // const clearCacheData = () => {
-  //   caches.keys().then((names) => {
-  //     names.forEach((name) => {
-  //       caches.delete(name);
-  //     });
-  //   });
-  // };
+  // const areaMap = {};
 
   //  here adding above function
 
@@ -51,9 +43,13 @@ const Plan = () => {
     }
   
     const onSubmits = (e) => {
+
+      const newPropertyKey = props.id;
+      const newPropertyValue = area;
+
       e.preventDefault();
-      // setAreaMap({ ...areaMap, [props.id]:area});
-      areaMap[props.id] = area;
+      setAreaMap( areaMap => ({ ...areaMap, [newPropertyKey]:newPropertyValue}));
+      // areaMap[props.id] = area;
       console.log(props.id, areaMap, area);
       setFinalArea(area);
       setArea('');
@@ -125,7 +121,7 @@ const Plan = () => {
   };
   
   //  adding end here
-  var map = {}, idindex = {}, edges = [], nodes = [], areas = [];
+  const map = {}, idindex = {}, edges = [], nodes = [], areas = [];
 
   console.log(areaMap);
   (schema.nodes).forEach((value, index) => {
@@ -133,7 +129,8 @@ const Plan = () => {
       map[Math.floor(num/2)] = value.content;
       nodes.push(value.content);
       idindex[Math.floor(num/2)+1] = index;
-      areas.push(areaMap[value.inputs[0].id]);
+      areas.push(areaMap[value.id]);
+      console.log(value.id);
   });
   schema.links.forEach((e) => {
       let u = Math.floor((Number((e.input).slice(5)))/2);
@@ -174,6 +171,7 @@ const Plan = () => {
   const sendSchema = async () => {
 
     setLoading('initial');
+    setImageslider('none');
     // setImg([]);
     // clearCacheData();
     const file = JSON.stringify({
@@ -236,7 +234,7 @@ const Plan = () => {
         </div>
         
         <div className="forCarousel" style={{display : `${imageslider}`}}>
-          <Carousel autoPlay className='Pranav'>
+          <Carousel autoPlay infiniteLoop className='Pranav'>
                 {img.map((image, ind) => {
                     return (
                         <div className = "image" key={ind}>
