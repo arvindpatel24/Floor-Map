@@ -7,14 +7,17 @@ import './Plan.css';
 import api from "../../api/connect";
 import axios from "axios";
 import CancelIcon from '@material-ui/icons/Cancel';
-import {BounceLoader} from 'react-spinners'
+import {BounceLoader} from 'react-spinners';
+import DrawBoundary from '../DrawBoundary';
 
 const initialSchema = createSchema({
   nodes: []
 });
 
 const baseURL = "https://staart.space";
-const imgURL = ["https://storage.googleapis.com/housegan-3f845.appspot.com/floorplan/plan0.jpg", "https://storage.googleapis.com/housegan-3f845.appspot.com/floorplan/plan1.jpg", "https://storage.googleapis.com/housegan-3f845.appspot.com/floorplan/plan2.jpg",  "https://storage.googleapis.com/housegan-3f845.appspot.com/floorplan/plan3.jpg",  "https://storage.googleapis.com/housegan-3f845.appspot.com/floorplan/plan4.jpg",  "https://storage.googleapis.com/housegan-3f845.appspot.com/floorplan/plan5.jpg", "https://storage.googleapis.com/housegan-3f845.appspot.com/floorplan/plan6.jpg",  "https://storage.googleapis.com/housegan-3f845.appspot.com/floorplan/plan7.jpg"]
+// const baseURL = "http://34.135.231.231";
+// const imgURL = ["https://firebasestorage.googleapis.com/v0/b/floorplan-firebase.appspot.com/o/images%2Fbg.png?alt=media&token=5f4001c7-d485-407a-80f2-cbe18e16dde7"]
+const imgURL = ["https://storage.googleapis.com/housegan-3f845.appspot.com/floorplan/plan0.jpg", "https://storage.googleapis.com/housegan-3f845.appspot.com/floorplan/plan1.jpg", "https://storage.googleapis.com/housegan-3f845.appspot.com/floorplan/plan2.jpg",  "https://storage.googleapis.com/housegan-3f845.appspot.com/floorplan/plan3.jpg",  "https://storage.googleapis.com/housegan-3f845.appspot.com/floorplan/plan4.jpg"]
 // const imgURL= [`${baseURL}/generated/plan1.png`,`${baseURL}/generated/plan2.png`,`${baseURL}/generated/plan3.png`,`${baseURL}/generated/plan4.png`,`${baseURL}/generated/plan5.png`,`${baseURL}/generated/plan6.png`,`${baseURL}/generated/plan7.png`]
 
 const Plan = () => {
@@ -97,19 +100,19 @@ const Plan = () => {
         
         return <NodeStyleComponent id={id} content={content} data={data} inputs={inputs} outputs={outputs} color="rgb(255, 0, 255)" width="80px" height="75px" port1right="38px" port1top="15px" port2right="-38px" port2top="-55px" contentTop="75px" inputTop="90px"/>;
       }
-      else if (content === "closet") {
+      else if (content === "unkown") {
         
         return <NodeStyleComponent id={id} content={content} data={data} inputs={inputs} outputs={outputs} color="rgb(255, 0, 0)" width="88px" height="60px" port1right="42px" port1top="5px" port2right="-40px" port2top="-45px" contentTop="65px" inputTop="70px"/>;
       }
-      else if (content === "balcony") {
+      else if (content === "closet") {
         
         return <NodeStyleComponent id={id} content={content} data={data} inputs={inputs} outputs={outputs} color="rgb(0, 0, 255)" width="88px" height="60px" port1right="42px" port1top="5px" port2right="-40px" port2top="-45px" contentTop="65px" inputTop="70px"/>;
       }
-      else if (content === "corridor") {
+      else if (content === "balcony") {
         
         return <NodeStyleComponent id={id} content={content} data={data} inputs={inputs} outputs={outputs} color="rgb(0, 255, 255)" width="88px" height="60px" port1right="42px" port1top="5px" port2right="-40px" port2top="-45px" contentTop="65px" inputTop="70px"/>;
       }
-      else if (content === "dining") {
+      else if (content === "corridor") {
         
         return <NodeStyleComponent id={id} content={content} data={data} inputs={inputs} outputs={outputs} color="rgb(0, 128, 0)" width="80px" height="75px" port1right="38px" port1top="15px" port2right="-38px" port2top="-55px" contentTop="75px" inputTop="90px"/>;
       }
@@ -122,21 +125,34 @@ const Plan = () => {
   
   //  adding end here
   const map = {}, idindex = {}, edges = [], nodes = [], areas = [];
+  const adj = new Map();
 
-  console.log(areaMap);
+  console.log(schema);
   (schema.nodes).forEach((value, index) => {
       let num = Number((value.inputs[0].id).slice(5));
       map[Math.floor(num/2)] = value.content;
       nodes.push(value.content);
       idindex[Math.floor(num/2)+1] = index;
+      adj.set(Math.floor(num/2)+1, []);
       areas.push(areaMap[value.id]);
       console.log(value.id);
   });
   schema.links.forEach((e) => {
       let u = Math.floor((Number((e.input).slice(5)))/2);
       let v = Math.floor((Number((e.output).slice(5)))/2);
+      adj.get(u+1).push(v+1);
+      adj.get(v+1).push(u+1);
       edges.push([idindex[u+1],idindex[v+1]]);
   });
+  // const get_keys = adj.keys();
+  // for(let i of get_keys)
+  // {
+  //   let get_values = adj.get(i);
+  //   for(let j of get_values)
+  //   {
+  //     edges.push([i,j]);
+  //   }
+  // }
   console.log(nodes,edges,areas);
   
   const deleteNodeFromSchema = (id) => {
@@ -213,11 +229,11 @@ const Plan = () => {
             <Button className="buttonRoom hoverbutton" id="but2" disabled={editState} onClick={()=> addNewNode("kitchen")}>Kitchen</Button>
             <Button className="buttonRoom hoverbutton" id="but3" disabled={editState} onClick={()=> addNewNode("bedroom")}>Bedroom</Button>
             <Button className="buttonRoom hoverbutton" id="but4" disabled={editState} onClick={()=> addNewNode("bathroom")}>Bathroom</Button>
-            <Button className="buttonRoom hoverbutton" id="but5" disabled={editState} onClick={()=> addNewNode("closet")}>Closet</Button>
-            <Button className="buttonRoom hoverbutton" id="but6" disabled={editState} onClick={()=> addNewNode("balcony")}>Balcony</Button>
-            <Button className="buttonRoom hoverbutton" id="but7" disabled={editState} onClick={()=> addNewNode("corridor")}>Corridor</Button>
-            <Button className="buttonRoom hoverbutton" id="but8" disabled={editState} onClick={()=> addNewNode("dining")}>Dining</Button>
-            <Button className="buttonRoom hoverbutton" id="but9" disabled={editState} onClick={()=> addNewNode("unkown")}>Outside</Button>
+            <Button className="buttonRoom hoverbutton" id="but5" disabled={editState} onClick={()=> addNewNode("unkown")}>Unkown</Button>
+            <Button className="buttonRoom hoverbutton" id="but6" disabled={editState} onClick={()=> addNewNode("closet")}>Closet</Button>
+            <Button className="buttonRoom hoverbutton" id="but7" disabled={editState} onClick={()=> addNewNode("balcony")}>Balcony</Button>
+            <Button className="buttonRoom hoverbutton" id="but8" disabled={editState} onClick={()=> addNewNode("corridor")}>Corridor</Button>
+            <Button className="buttonRoom hoverbutton" id="but9" disabled={editState} onClick={()=> addNewNode("laundry")}>Laundry</Button>
           </div>
         </div>
         <div className="graph">
@@ -227,14 +243,17 @@ const Plan = () => {
         
       </div>  
       <div className="ganmodel">
+        <div id="sketch" style={{height:"535px"}}>
+          <DrawBoundary/>
+        </div>
         <div style={{display : `${loading}`}}>
           <div className="load">
             <BounceLoader/>
           </div>
         </div>
         
-        <div className="forCarousel" style={{display : `${imageslider}`}}>
-          <Carousel autoPlay infiniteLoop className='Pranav'>
+        <div className="forCarousel" >
+          <Carousel  infiniteLoop className='Pranav' style={{display : `${imageslider}`}}>
                 {img.map((image, ind) => {
                     return (
                         <div className = "image" key={ind}>

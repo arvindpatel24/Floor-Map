@@ -121,7 +121,7 @@ background-color: rgb(117, 116, 116);
 .ganmodel{
     width:50%;
     border: 2px solid grey;
-    height: 780px; 
+    height: 382px; 
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
@@ -136,16 +136,19 @@ background-color: rgb(117, 116, 116);
     align-items: center;
     justify-content: center;
     text-align: center;
-    top: 300px;
+    top:0px;
+}
+
+.Pranav{
+    height: 0px;
 }
 
 .carousel{
     position: relative;
     display: flex;
     justify-content: center;
-    height: 370px;
-    top: 100px;
-    padding-top: 20px;
+    height: 270px;
+    top: -145px;    
     border : none;
 }
 
@@ -162,11 +165,22 @@ background-color: rgb(117, 116, 116);
     border : none;
 }
 
+.carousel .control-dots{
+    top:280px;
+}
+
+.thumbs-wrapper{
+    margin: 0px;
+    height: 100px;
+}
+
 .image{
     margin : 0 auto;
     height: 70%;
     width: auto;
     border : none;
+    position: relative;
+    top: -25px;
 }
 
 .carousel-status{
@@ -195,3 +209,9 @@ input::placeholder {
 .node_style p{
     line-height: 0.4285em
 }
+
+.konvajs-content {
+    margin: auto;
+    border: 2px solid rgb(35, 12, 56);
+}
+
